@@ -1,21 +1,15 @@
-
-
-
-
-
 #include <windows.h>
 
-
-int main()
+int main(void)
 {
-    FreeConsole();
-    HDC hdc = GetDC(HWND_DESKTOP);
+	HDC desk = GetDC(0);
+	int x = GetSystemMetrics(0);
+	int y = GetSystemMetrics(1);
 
-    for (;;) {
-            BitBlt(hdc, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), hdc, NULL, NULL, NOTSRCCOPY);
-            Sleep(2100);
-            BitBlt(hdc, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), hdc, 0, 0, NOTSRCCOPY);
-            Sleep(2100);
-        
-    }
+	while(1)
+	{
+		desk = GetDC(0);
+		PatBlt(desk, 0, 0, x, y, PATINVERT);
+		Sleep(1000);
+	}
 }

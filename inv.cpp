@@ -1,15 +1,16 @@
 #include <windows.h>
 
-int main(void)
+int main()
 {
-	HDC desk = GetDC(0);
+	HDC hdc = GetDC(0);
 	int x = GetSystemMetrics(0);
 	int y = GetSystemMetrics(1);
 
 	while(1)
 	{
-		desk = GetDC(0);
-		PatBlt(desk, 0, 0, x, y, PATINVERT);
+		hdc = GetDC(0);
+		PatBlt(hdc, 0, 0, x, y, PATINVERT);
 		Sleep(1000);
+		ReleaseDC(0, hdc);
 	}
 }
